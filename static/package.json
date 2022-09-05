@@ -1,6 +1,6 @@
 {
   "name": "@elum/vkid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Components for easy authorization through VK ID services",
 
   "main": "./index.cjs.js",

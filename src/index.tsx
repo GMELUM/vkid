@@ -25,7 +25,8 @@ interface ILoginVKID {
 
     settings?: TSettings
 
-    authSucess?: (data: TLoginSuccess) => void;
+    authSuccess?: (data: TLoginSuccess) => void;
+    authAlternative?: () => void;
 };
 
 type TResizeFrame = { height: number; }
@@ -95,7 +96,8 @@ const LoginVKID: FC<ILoginVKID> = ({
 
     settings,
 
-    authSucess
+    authSuccess,
+    authAlternative
 }) => {
 
     const [uuid, setUUID] = useState(uuidVK())
@@ -109,6 +111,7 @@ const LoginVKID: FC<ILoginVKID> = ({
                 case "VKSDKOneTapResizeFrame": handlerResizeFrame(params); break;
                 case "VKSDKOneTapAuthDataLoaded": handlerDataLoader(params); break;
                 case "VKSDKOneTapAuthLoginSuccess": handlerLoginSuccess(params); break;
+                case "VKSDKButtonOneTapAuthShowLoginOptions": handlerAlternativeLogin(); break;
                 case "VKSDKOneTapAuthFullAuthNeeded":
                 case "VKSDKOneTapAuthPhoneValidationNeeded":
                 case "VKSDKButtonOneTapAuthShowLogin": handlerWindowAuth(); break;
@@ -121,7 +124,8 @@ const LoginVKID: FC<ILoginVKID> = ({
 
     const handlerResizeFrame = (params: TResizeFrame) => setHeight(params.height);
     const handlerDataLoader = (params: TDataLoader) => setUUID(params.uuid);
-    const handlerLoginSuccess = (params: TLoginSuccess) => authSucess && uuid && authSucess(params);
+    const handlerLoginSuccess = (params: TLoginSuccess) => authSuccess && uuid && authSuccess(params);
+    const handlerAlternativeLogin = () => authAlternative && authAlternative();
 
     const handlerWindowAuth = () => {
 
@@ -162,11 +166,11 @@ const LoginVKID: FC<ILoginVKID> = ({
         "style_border_radius": radius.toString(),
         "lang_id": language.toString(),
         "app_settings": base64setting(settings || {
-            agreements: '',
+            agreements: 'Hello world',
             promo: '',
             vkc_behavior: '',
             vkc_auth_action: '',
-            vkc_brand: '',
+            vkc_brand: 'elum team',
             vkc_display_mode: '',
         })
     }).toString();
