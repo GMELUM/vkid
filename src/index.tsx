@@ -104,8 +104,8 @@ const LoginVKID: FC<ILoginVKID> = ({
     const [heightFrame, setHeight] = useState(0);
 
     useEffect(() => {
+
         const handler = (event: any) => {
-            console.log(event)
             const { handler, params } = event.data;
             switch (handler) {
                 case "VKSDKOneTapResizeFrame": handlerResizeFrame(params); break;
@@ -120,6 +120,7 @@ const LoginVKID: FC<ILoginVKID> = ({
 
         window.addEventListener("message", handler);
         return () => window.removeEventListener("message", handler);
+        
     }, [])
 
     const handlerResizeFrame = (params: TResizeFrame) => setHeight(params.height);
