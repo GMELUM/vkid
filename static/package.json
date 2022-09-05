@@ -1,0 +1,33 @@
+{
+  "name": "@elum/vkid",
+  "version": "0.0.1",
+  "description": "Components for easy authorization through VK ID services",
+
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js",
+  "exports": {
+    "require": "./index.cjs.js",
+    "import": "./index.esm.js"
+  },
+  "types": "./index.d.ts",
+
+  "license": "MIT",
+  "author": {
+    "name": "Artur Frank",
+    "url": "https://vk.com/gmelum"
+  },
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GMELUM/vkid.git"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^17",
+    "react-dom": "^18 || ^17"
+  },
+  "keywords": [
+    "auth",
+    "vk",
+    "vkid"
+  ]
+}
